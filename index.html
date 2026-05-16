@@ -5,11 +5,7 @@
 
 <meta
   name="viewport"
-  content="width=device-width,
-           initial-scale=1.0,
-           maximum-scale=1.0,
-           user-scalable=no,
-           viewport-fit=cover"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
 />
 
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -18,27 +14,19 @@
 <title>HTML Viewer</title>
 
 <style>
-
   :root {
-
     --bg: #f2f2f7;
-
     --card: rgba(255,255,255,.72);
-
     --text: #1c1c1e;
     --sub: #8e8e93;
-
     --sep: rgba(60,60,67,.18);
 
     --blue: #007aff;
     --green: #34c759;
-
     --gold: #f5a524;
     --gold-press: #d98b0b;
-
     --red: #ff453a;
     --red-press: #d9362d;
-
     --purple: #5856d6;
     --purple-press: #3f3db8;
 
@@ -46,18 +34,12 @@
   }
 
   @media (prefers-color-scheme: dark) {
-
     :root {
-
-      --bg: #000000;
-
+      --bg: #000;
       --card: rgba(28,28,30,.82);
-
       --text: #f2f2f7;
       --sub: #8e8e93;
-
       --sep: rgba(84,84,88,.55);
-
       --shadow: 0 30px 90px rgba(0,0,0,.55);
     }
   }
@@ -69,284 +51,265 @@
 
   html,
   body {
-
     width: 100%;
     height: 100%;
-
     margin: 0;
     padding: 0;
-
     overflow: hidden;
-
     position: fixed;
     inset: 0;
-
     touch-action: none;
     overscroll-behavior: none;
-
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-
-    font-family:
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Helvetica,
-      Arial,
-      sans-serif;
-
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: var(--bg);
-
     color: var(--text);
   }
 
   .app {
-
     position: fixed;
     inset: 0;
-
     width: 100vw;
-
     height: 100vh;
     height: 100svh;
-
     overflow: hidden;
-
     padding:
       max(env(safe-area-inset-top), 22px)
       18px
       max(env(safe-area-inset-bottom), 22px);
-
     display: flex;
     flex-direction: column;
   }
 
   .inner {
-
     width: min(100%, 760px);
-
     height: 100%;
-
     margin: 0 auto;
-
     display: flex;
     flex-direction: column;
-
     gap: 16px;
-
     overflow: hidden;
   }
 
   .title {
-
     text-align: center;
-
     flex-shrink: 0;
   }
 
   h1 {
-
     margin: 0;
-
     font-size: 28px;
     font-weight: 750;
-
     letter-spacing: -0.6px;
   }
 
   p {
-
     margin: 7px 0 0;
-
     color: var(--sub);
-
     font-size: 15px;
     font-weight: 600;
   }
 
   .card {
-
     flex: 1;
-
     min-height: 0;
-
     overflow: hidden;
-
     display: flex;
-
     background: var(--card);
-
     border: 1px solid var(--sep);
-
     border-radius: 24px;
-
     box-shadow: var(--shadow);
-
     backdrop-filter: blur(22px);
     -webkit-backdrop-filter: blur(22px);
   }
 
   textarea {
-
     width: 100%;
     height: 100%;
-
     border: none;
     outline: none;
     resize: none;
-
     padding: 18px;
-
     background: transparent;
-
     color: var(--text);
-
-    font-family:
-      ui-monospace,
-      SFMono-Regular,
-      Menlo,
-      Monaco,
-      Consolas,
-      monospace;
-
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 14px;
     line-height: 1.5;
-
     caret-color: var(--blue);
-
     overflow: auto;
-
     touch-action: pan-y;
-
     overscroll-behavior: contain;
-
     -webkit-user-select: text;
     user-select: text;
   }
 
   textarea::placeholder {
-
     color: var(--sub);
   }
 
   .button-row {
-
     display: flex;
-
     gap: 12px;
-
     flex-shrink: 0;
   }
 
   button {
-
     border: none;
-
     cursor: pointer;
-
     user-select: none;
     -webkit-user-select: none;
-
-    transition:
-      transform .08s ease,
-      background .12s ease;
+    transition: transform .08s ease, background .12s ease;
   }
 
   .run {
-
     flex: 1;
-
     border-radius: 18px;
-
     padding: 17px 18px;
-
     background: var(--blue);
-
     color: white;
-
     font-size: 18px;
     font-weight: 800;
   }
 
   .run.has-code {
-
     background: var(--green);
   }
 
-  .square-btn {
+  .run-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
 
+  .run-content svg {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .square-btn {
     width: 58px;
     height: 58px;
-
     border-radius: 18px;
-
     display: grid;
     place-items: center;
-
     color: white;
-
     flex-shrink: 0;
   }
 
-  .clear {
+  .clear { background: var(--red); }
+  .clear:active { background: var(--red-press); }
 
-    background: var(--red);
-  }
+  .paste { background: var(--gold); }
+  .paste:active { background: var(--gold-press); }
 
-  .clear:active {
-
-    background: var(--red-press);
-  }
-
-  .paste {
-
-    background: var(--gold);
-  }
-
-  .paste:active {
-
-    background: var(--gold-press);
-  }
-
-  .open {
-
-    background: var(--purple);
-  }
-
-  .open:active {
-
-    background: var(--purple-press);
-  }
+  .open { background: var(--purple); }
+  .open:active { background: var(--purple-press); }
 
   .run:active,
   .square-btn:active {
-
     transform: scale(.985);
   }
 
+  .run-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: white;
+    display: none;
+    overflow: hidden;
+  }
+
+  .run-screen.active {
+    display: block;
+  }
+
+  #runnerFrame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+  }
+
+  .home-dot {
+    position: fixed;
+    z-index: 1000;
+    left: 10px;
+    top: 50%;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: #000;
+    color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: .38;
+    transform: translate3d(0, -50%, 0);
+    transition:
+      opacity .35s ease,
+      width .22s cubic-bezier(.2,.8,.2,1),
+      height .22s cubic-bezier(.2,.8,.2,1),
+      border-radius .22s cubic-bezier(.2,.8,.2,1);
+    touch-action: none;
+    cursor: grab;
+  }
+
+  .home-dot.visible {
+    display: flex;
+  }
+
+  .home-dot.active,
+  .home-dot.dragging {
+    opacity: 1;
+  }
+
+  .home-dot.show-home {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+  }
+
+  .home-dot svg {
+    width: 25.57px;
+    height: 22.96px;
+    opacity: 0;
+    transform: scale(.55);
+    transition: opacity .16s ease, transform .16s ease;
+  }
+
+  .home-dot.show-home svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
   @media (max-width: 600px) {
-
-    h1 {
-
-      font-size: 24px;
-    }
+    h1 { font-size: 24px; }
 
     .card {
-
       border-radius: 20px;
     }
 
     textarea {
-
       padding: 16px;
-
       font-size: 13px;
     }
-  }
 
+    .home-dot {
+      width: 30px;
+      height: 30px;
+    }
+
+    .home-dot.show-home {
+      width: 46px;
+      height: 46px;
+    }
+  }
 </style>
 </head>
 
@@ -357,15 +320,11 @@
   <div class="inner">
 
     <div class="title">
-
       <h1>HTML Viewer</h1>
-
       <p>Paste HTML, then run it full screen.</p>
-
     </div>
 
     <section class="card">
-
       <textarea
         id="htmlInput"
         spellcheck="false"
@@ -374,95 +333,36 @@
         autocorrect="off"
         placeholder="Past HTML code here"
       ></textarea>
-
     </section>
 
     <div class="button-row">
 
-      <!-- CLEAR -->
-
-      <button
-        class="square-btn clear"
-        id="clearBtn"
-        aria-label="Clear HTML"
-      >
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="-0.9999021128096501 -0.9764644838869572 17.804515838623047 17.798625946044922"
-          width="17.8"
-          height="17.8"
-        >
-
-          <path
-            d="M14.5 0.24L0.22 14.52C-0.07 14.81-0.08 15.31 0.22 15.6C0.52 15.89 1.01 15.89 1.31 15.6L15.58 1.32C15.88 1.03 15.88 0.54 15.58 0.24C15.28-0.05 14.8-0.05 14.5 0.24ZM15.58 14.52L1.31 0.24C1.01-0.05 0.52-0.05 0.22 0.24C-0.07 0.55-0.07 1.03 0.22 1.32L14.5 15.6C14.79 15.89 15.29 15.9 15.58 15.6C15.88 15.3 15.88 14.81 15.58 14.52Z"
-            fill="currentColor"
-          />
-
+      <button class="square-btn clear" id="clearBtn" aria-label="Clear HTML">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.9999021128096501 -0.9764644838869572 17.804515838623047 17.798625946044922" width="17.8" height="17.8">
+          <path d="M14.5 0.24L0.22 14.52C-0.07 14.81-0.08 15.31 0.22 15.6C0.52 15.89 1.01 15.89 1.31 15.6L15.58 1.32C15.88 1.03 15.88 0.54 15.58 0.24C15.28-0.05 14.8-0.05 14.5 0.24ZM15.58 14.52L1.31 0.24C1.01-0.05 0.52-0.05 0.22 0.24C-0.07 0.55-0.07 1.03 0.22 1.32L14.5 15.6C14.79 15.89 15.29 15.9 15.58 15.6C15.88 15.3 15.88 14.81 15.58 14.52Z" fill="currentColor" />
         </svg>
-
       </button>
 
-      <!-- PASTE -->
-
-      <button
-        class="square-btn paste"
-        id="pasteBtn"
-        aria-label="Paste HTML"
-      >
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="-1 0.08594000339508057 18.773399353027344 26.203160643577576"
-          width="18.77"
-          height="26.2"
-        >
-
-          <path
-            d="M16.77 6.8L16.77 22.25C16.77 24.27 15.77 25.29 13.77 25.29L3.01 25.29C1.01 25.29 0 24.27 0 22.25L0 6.8C0 4.77 1.01 3.75 3.01 3.75L3.34 3.75C3.33 3.82 3.33 3.9 3.33 3.98L3.33 5.02C3.33 6.2 4.15 7.02 5.3 7.02L11.48 7.02C12.63 7.02 13.45 6.2 13.45 5.02L13.45 3.98C13.45 3.9 13.44 3.82 13.43 3.75L13.77 3.75C15.77 3.75 16.77 4.77 16.77 6.8Z"
-            fill="currentColor"
-          />
-
-          <path
-            d="M5.3 5.93L11.48 5.93C12.02 5.93 12.36 5.59 12.36 5.02L12.36 3.98C12.36 3.41 12.02 3.07 11.48 3.07L10.47 3.07C10.41 1.98 9.5 1.09 8.39 1.09C7.27 1.09 6.36 1.98 6.3 3.07L5.3 3.07C4.75 3.07 4.41 3.41 4.41 3.98L4.41 5.02C4.41 5.59 4.75 5.93 5.3 5.93ZM8.39 4.02C7.89 4.02 7.49 3.61 7.49 3.13C7.49 2.63 7.89 2.23 8.39 2.23C8.88 2.23 9.28 2.63 9.28 3.13C9.28 3.61 8.88 4.02 8.39 4.02Z"
-            fill="currentColor"
-          />
-
+      <button class="square-btn paste" id="pasteBtn" aria-label="Paste HTML">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 0.08594000339508057 18.773399353027344 26.203160643577576" width="18.77" height="26.2">
+          <path d="M16.77 6.8L16.77 22.25C16.77 24.27 15.77 25.29 13.77 25.29L3.01 25.29C1.01 25.29 0 24.27 0 22.25L0 6.8C0 4.77 1.01 3.75 3.01 3.75L3.34 3.75C3.33 3.82 3.33 3.9 3.33 3.98L3.33 5.02C3.33 6.2 4.15 7.02 5.3 7.02L11.48 7.02C12.63 7.02 13.45 6.2 13.45 5.02L13.45 3.98C13.45 3.9 13.44 3.82 13.43 3.75L13.77 3.75C15.77 3.75 16.77 4.77 16.77 6.8Z" fill="currentColor" />
+          <path d="M5.3 5.93L11.48 5.93C12.02 5.93 12.36 5.59 12.36 5.02L12.36 3.98C12.36 3.41 12.02 3.07 11.48 3.07L10.47 3.07C10.41 1.98 9.5 1.09 8.39 1.09C7.27 1.09 6.36 1.98 6.3 3.07L5.3 3.07C4.75 3.07 4.41 3.41 4.41 3.98L4.41 5.02C4.41 5.59 4.75 5.93 5.3 5.93ZM8.39 4.02C7.89 4.02 7.49 3.61 7.49 3.13C7.49 2.63 7.89 2.23 8.39 2.23C8.88 2.23 9.28 2.63 9.28 3.13C9.28 3.61 8.88 4.02 8.39 4.02Z" fill="currentColor" />
         </svg>
-
       </button>
 
-      <!-- OPEN -->
-
-      <button
-        class="square-btn open"
-        id="openBtn"
-        aria-label="Open HTML Project"
-      >
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="-1 -1 24.69529914855957 20.24220085144043"
-          width="24.7"
-          height="20.24"
-        >
-
-          <path
-            d="M3.04 18.24L19.89 18.24C21.68 18.24 22.7 17.22 22.7 15.23L22.7 4.87C22.7 2.88 21.67 1.86 19.66 1.86L9.54 1.86C8.8 1.86 8.4 1.7 7.88 1.25L7.29 0.75C6.63 0.17 6.14 0 5.14 0L2.66 0C0.95 0 0 0.95 0 2.86L0 15.23C0 17.23 1.02 18.24 3.04 18.24ZM1.71 5.08L1.71 4.62C1.71 3.98 2.15 3.57 2.95 3.57L19.71 3.57C20.52 3.57 20.95 3.98 20.95 4.62L20.95 5.08Z"
-            fill="currentColor"
-          />
-
+      <button class="square-btn open" id="openBtn" aria-label="Open HTML Project">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 24.69529914855957 20.24220085144043" width="24.7" height="20.24">
+          <path d="M3.04 18.24L19.89 18.24C21.68 18.24 22.7 17.22 22.7 15.23L22.7 4.87C22.7 2.88 21.67 1.86 19.66 1.86L9.54 1.86C8.8 1.86 8.4 1.7 7.88 1.25L7.29 0.75C6.63 0.17 6.14 0 5.14 0L2.66 0C0.95 0 0 0.95 0 2.86L0 15.23C0 17.23 1.02 18.24 3.04 18.24ZM1.71 5.08L1.71 4.62C1.71 3.98 2.15 3.57 2.95 3.57L19.71 3.57C20.52 3.57 20.95 3.98 20.95 4.62L20.95 5.08Z" fill="currentColor" />
         </svg>
-
       </button>
 
-      <!-- RUN -->
-
-      <button
-        class="run"
-        id="runBtn"
-      >
-        Run
+      <button class="run" id="runBtn">
+        <span class="run-content">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0.6875 -1 16.75 18.6875" width="16.75" height="18.69">
+            <path d="M1.69 15.34C1.69 16.26 2.23 16.69 2.86 16.69C3.13 16.69 3.42 16.6 3.7 16.45L15.45 9.54C16.17 9.12 16.44 8.82 16.44 8.34C16.44 7.86 16.17 7.56 15.45 7.14L3.7 0.23C3.42 0.08 3.13 0 2.86 0C2.23 0 1.69 0.42 1.69 1.34Z" fill="currentColor" />
+          </svg>
+          <span>Run</span>
+        </span>
       </button>
 
     </div>
@@ -471,385 +371,347 @@
 
 </main>
 
-<!-- FILE INPUTS -->
+<section class="run-screen" id="runScreen">
+  <iframe
+    id="runnerFrame"
+    sandbox="allow-scripts allow-forms allow-modals allow-popups allow-same-origin allow-downloads"
+  ></iframe>
 
-<input
-  type="file"
-  id="openFileInput"
-  accept=".html,.htm"
-  hidden
-/>
+  <button class="home-dot" id="homeDot" aria-label="Return to editor">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 25.57029914855957 22.960899353027344" width="25.57" height="22.96">
+      <path d="M9.05 19.58L9.05 13.54C9.05 13.1 9.34 12.82 9.77 12.82L13.8 12.82C14.24 12.82 14.52 13.1 14.52 13.54L14.52 19.58ZM2.98 18.85C2.98 20.18 3.78 20.96 5.13 20.96L18.45 20.96C19.79 20.96 20.59 20.18 20.59 18.85L20.59 10.45L12.4 3.58C12 3.23 11.55 3.25 11.16 3.58L2.98 10.43ZM0.74 10.41C0.98 10.41 1.17 10.29 1.34 10.14L11.41 1.7C11.52 1.59 11.66 1.55 11.78 1.55C11.91 1.55 12.05 1.59 12.16 1.7L22.23 10.14C22.4 10.29 22.59 10.41 22.83 10.41C23.29 10.41 23.57 10.08 23.57 9.73C23.57 9.52 23.48 9.32 23.29 9.16L12.91 0.45C12.55 0.15 12.17 0 11.78 0C11.4 0 11.02 0.15 10.66 0.45L0.28 9.16C0.09 9.32 0 9.52 0 9.73C0 10.08 0.27 10.41 0.74 10.41ZM18.45 5.52L20.74 7.46L20.74 3.02C20.74 2.63 20.48 2.38 20.09 2.38L19.1 2.38C18.71 2.38 18.45 2.63 18.45 3.02Z" fill="currentColor"/>
+    </svg>
+  </button>
+</section>
 
-<input
-  type="file"
-  id="openFolderInput"
-  webkitdirectory
-  directory
-  multiple
-  hidden
-/>
+<input type="file" id="openFileInput" accept=".html,.htm" hidden />
+<input type="file" id="openFolderInput" webkitdirectory directory multiple hidden />
 
 <script>
+  const input = document.getElementById("htmlInput");
+  const runBtn = document.getElementById("runBtn");
+  const pasteBtn = document.getElementById("pasteBtn");
+  const clearBtn = document.getElementById("clearBtn");
+  const openBtn = document.getElementById("openBtn");
+  const openFileInput = document.getElementById("openFileInput");
+  const openFolderInput = document.getElementById("openFolderInput");
 
-  const input =
-    document.getElementById("htmlInput");
+  const runScreen = document.getElementById("runScreen");
+  const runnerFrame = document.getElementById("runnerFrame");
+  const homeDot = document.getElementById("homeDot");
 
-  const runBtn =
-    document.getElementById("runBtn");
-
-  const pasteBtn =
-    document.getElementById("pasteBtn");
-
-  const clearBtn =
-    document.getElementById("clearBtn");
-
-  const openBtn =
-    document.getElementById("openBtn");
-
-  const openFileInput =
-    document.getElementById("openFileInput");
-
-  const openFolderInput =
-    document.getElementById("openFolderInput");
+  let dotSide = "left";
+  let dotY = window.innerHeight / 2;
+  let isDraggingDot = false;
+  let dotPointerStartX = 0;
+  let dotPointerStartY = 0;
+  let dotStartX = 0;
+  let dotStartY = 0;
+  let dotMoved = false;
+  let dotIdleTimer = null;
+  let dotHomeTimer = null;
 
   function updateRunButtonState() {
-
-    const hasCode =
-      input.value.trim().length > 0;
-
-    runBtn.classList.toggle(
-      "has-code",
-      hasCode
-    );
+    runBtn.classList.toggle("has-code", input.value.trim().length > 0);
   }
 
   function runRawHTML(codeOverride = null) {
+    const code = codeOverride ?? input.value.trim();
+    if (!code) return;
 
-    const code =
-      codeOverride ?? input.value.trim();
+    runnerFrame.srcdoc = code;
+    runScreen.classList.add("active");
+    homeDot.classList.add("visible");
 
-    if (!code) {
-      return;
-    }
+    setDotPosition(dotSide, dotY, false);
+    activateDotTemporarily();
+  }
 
-    document.open();
-
-    document.write(code);
-
-    document.close();
+  function returnToEditor() {
+    runScreen.classList.remove("active");
+    homeDot.classList.remove("visible", "active", "dragging", "show-home");
+    runnerFrame.srcdoc = "";
   }
 
   async function pasteFromClipboard() {
-
     try {
-
-      const text =
-        await navigator.clipboard.readText();
-
-      input.value = text;
-
+      input.value = await navigator.clipboard.readText();
       updateRunButtonState();
-
-    } catch {
-
-    }
+    } catch {}
   }
 
   function clearHTML() {
-
     input.value = "";
-
     updateRunButtonState();
   }
 
   async function openSingleHTML(file) {
-
-    const text =
-      await file.text();
-
+    const text = await file.text();
     input.value = text;
-
     updateRunButtonState();
-
     runRawHTML(text);
   }
 
   async function fileToDataURL(file) {
-
     return new Promise(resolve => {
-
-      const reader =
-        new FileReader();
-
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
       reader.readAsDataURL(file);
     });
   }
 
   async function openProjectFolder(files) {
-
-    const fileMap =
-      new Map();
+    const fileMap = new Map();
 
     for (const file of files) {
-
-      const relativePath =
-        file.webkitRelativePath || file.name;
-
-      const normalized =
-        relativePath.replace(/\\/g, "/");
-
-      fileMap.set(
-        normalized,
-        file
-      );
+      const normalized = (file.webkitRelativePath || file.name).replace(/\\/g, "/");
+      fileMap.set(normalized, file);
     }
 
     let indexFile = null;
 
     for (const [path, file] of fileMap) {
-
-      if (
-        path.toLowerCase().endsWith("/index.html")
-      ) {
-
+      if (path.toLowerCase().endsWith("/index.html")) {
         indexFile = file;
-
         break;
       }
     }
 
     if (!indexFile) {
-
       for (const [path, file] of fileMap) {
-
-        if (
-          path.toLowerCase().endsWith(".html")
-        ) {
-
+        if (path.toLowerCase().endsWith(".html")) {
           indexFile = file;
-
           break;
         }
       }
     }
 
     if (!indexFile) {
-
       alert("No HTML file found.");
-
       return;
     }
 
-    const htmlText =
-      await indexFile.text();
-
-    const parser =
-      new DOMParser();
-
-    const doc =
-      parser.parseFromString(
-        htmlText,
-        "text/html"
-      );
-
-    const resourceCache =
-      new Map();
+    const htmlText = await indexFile.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlText, "text/html");
+    const resourceCache = new Map();
 
     for (const [path, file] of fileMap) {
-
-      const filename =
-        path.split("/").pop();
-
-      const dataURL =
-        await fileToDataURL(file);
-
-      resourceCache.set(
-        filename,
-        dataURL
-      );
+      const filename = path.split("/").pop();
+      resourceCache.set(filename, await fileToDataURL(file));
     }
 
-    const elements =
-      doc.querySelectorAll(
-        "[src], link[href]"
-      );
+    const elements = doc.querySelectorAll("[src], link[href]");
 
     for (const el of elements) {
+      const attr = el.hasAttribute("src") ? "src" : "href";
+      const original = el.getAttribute(attr);
+      if (!original) continue;
 
-      const attr =
-        el.hasAttribute("src")
-        ? "src"
-        : "href";
+      const filename = original.split("/").pop();
 
-      const original =
-        el.getAttribute(attr);
-
-      if (!original) {
-        continue;
-      }
-
-      const filename =
-        original.split("/").pop();
-
-      if (
-        resourceCache.has(filename)
-      ) {
-
-        el.setAttribute(
-          attr,
-          resourceCache.get(filename)
-        );
+      if (resourceCache.has(filename)) {
+        el.setAttribute(attr, resourceCache.get(filename));
       }
     }
 
-    const finalHTML =
-      "<!DOCTYPE html>\n" +
-      doc.documentElement.outerHTML;
+    const finalHTML = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
 
-    input.value =
-      finalHTML;
-
+    input.value = finalHTML;
     updateRunButtonState();
-
     runRawHTML(finalHTML);
   }
 
   function openProject() {
-
-    const openFolder =
-      confirm(
+    const openFolder = confirm(
 `Press OK to open a project folder.
 
 Press Cancel to open a single HTML file.`
-      );
+    );
 
     if (openFolder) {
-
       openFolderInput.click();
-
     } else {
-
       openFileInput.click();
     }
   }
 
-  function lockPageMotion(event) {
+  function getDotSize() {
+    const rect = homeDot.getBoundingClientRect();
+    return rect.width || 34;
+  }
 
-    if (
-      event.target === input
-    ) {
+  function setDotPosition(side, y, animated = true) {
+    const size = getDotSize();
+    const margin = 10;
+    const minY = margin + size / 2;
+    const maxY = window.innerHeight - margin - size / 2;
 
-      return;
+    dotSide = side;
+    dotY = Math.min(Math.max(y, minY), maxY);
+
+    const x = side === "left"
+      ? margin
+      : window.innerWidth - size - margin;
+
+    if (!animated) {
+      homeDot.style.transition = "none";
     }
+
+    homeDot.style.left = x + "px";
+    homeDot.style.top = dotY + "px";
+    homeDot.style.transform = "translate3d(0, -50%, 0)";
+
+    if (!animated) {
+      requestAnimationFrame(() => {
+        homeDot.style.transition = "";
+      });
+    }
+  }
+
+  function activateDotTemporarily() {
+    clearTimeout(dotIdleTimer);
+    homeDot.classList.add("active");
+
+    dotIdleTimer = setTimeout(() => {
+      if (!isDraggingDot) {
+        homeDot.classList.remove("active");
+      }
+    }, 1200);
+  }
+
+  function showHomeTemporarily() {
+    clearTimeout(dotHomeTimer);
+    homeDot.classList.add("show-home", "active");
+
+    dotHomeTimer = setTimeout(() => {
+      homeDot.classList.remove("show-home");
+      activateDotTemporarily();
+    }, 1200);
+  }
+
+  function onDotPointerDown(event) {
+    isDraggingDot = true;
+    dotMoved = false;
+
+    const rect = homeDot.getBoundingClientRect();
+
+    dotPointerStartX = event.clientX;
+    dotPointerStartY = event.clientY;
+    dotStartX = rect.left;
+    dotStartY = rect.top + rect.height / 2;
+
+    homeDot.setPointerCapture(event.pointerId);
+    homeDot.classList.add("dragging", "active");
+    clearTimeout(dotIdleTimer);
+    clearTimeout(dotHomeTimer);
 
     event.preventDefault();
   }
 
-  input.addEventListener(
-    "input",
-    updateRunButtonState
-  );
+  function onDotPointerMove(event) {
+    if (!isDraggingDot) return;
 
-  runBtn.addEventListener(
-    "click",
-    () => runRawHTML()
-  );
+    const dx = event.clientX - dotPointerStartX;
+    const dy = event.clientY - dotPointerStartY;
 
-  pasteBtn.addEventListener(
-    "click",
-    pasteFromClipboard
-  );
-
-  clearBtn.addEventListener(
-    "click",
-    clearHTML
-  );
-
-  openBtn.addEventListener(
-    "click",
-    openProject
-  );
-
-  openFileInput.addEventListener(
-    "change",
-    async event => {
-
-      const file =
-        event.target.files[0];
-
-      if (!file) {
-        return;
-      }
-
-      await openSingleHTML(file);
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+      dotMoved = true;
     }
-  );
 
-  openFolderInput.addEventListener(
-    "change",
-    async event => {
+    const size = getDotSize();
+    const margin = 10;
+    const minY = margin + size / 2;
+    const maxY = window.innerHeight - margin - size / 2;
 
-      const files =
-        [...event.target.files];
+    const x = dotStartX + dx;
+    const y = Math.min(Math.max(dotStartY + dy, minY), maxY);
 
-      if (!files.length) {
-        return;
-      }
+    homeDot.style.left = x + "px";
+    homeDot.style.top = y + "px";
+    dotY = y;
 
-      await openProjectFolder(files);
+    event.preventDefault();
+  }
+
+  function onDotPointerUp(event) {
+    if (!isDraggingDot) return;
+
+    isDraggingDot = false;
+    homeDot.classList.remove("dragging");
+
+    const rect = homeDot.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const side = centerX < window.innerWidth / 2 ? "left" : "right";
+
+    setDotPosition(side, dotY, true);
+
+    if (!dotMoved) {
+      showHomeTemporarily();
+
+      setTimeout(() => {
+        if (!isDraggingDot) {
+          returnToEditor();
+        }
+      }, 260);
+    } else {
+      activateDotTemporarily();
     }
-  );
 
-  input.addEventListener(
-    "keydown",
-    event => {
+    try {
+      homeDot.releasePointerCapture(event.pointerId);
+    } catch {}
 
-      if (
-        (event.ctrlKey || event.metaKey)
-        &&
-        event.key === "Enter"
-      ) {
+    event.preventDefault();
+  }
 
-        runRawHTML();
-      }
+  function lockPageMotion(event) {
+    if (event.target === input) return;
+    event.preventDefault();
+  }
+
+  input.addEventListener("input", updateRunButtonState);
+  runBtn.addEventListener("click", () => runRawHTML());
+  pasteBtn.addEventListener("click", pasteFromClipboard);
+  clearBtn.addEventListener("click", clearHTML);
+  openBtn.addEventListener("click", openProject);
+
+  openFileInput.addEventListener("change", async event => {
+    const file = event.target.files[0];
+    if (!file) return;
+    await openSingleHTML(file);
+  });
+
+  openFolderInput.addEventListener("change", async event => {
+    const files = [...event.target.files];
+    if (!files.length) return;
+    await openProjectFolder(files);
+  });
+
+  input.addEventListener("keydown", event => {
+    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+      runRawHTML();
     }
-  );
+  });
 
-  document.addEventListener(
-    "touchmove",
-    lockPageMotion,
-    {
-      passive: false
-    }
-  );
+  homeDot.addEventListener("pointerdown", onDotPointerDown);
+  homeDot.addEventListener("pointermove", onDotPointerMove);
+  homeDot.addEventListener("pointerup", onDotPointerUp);
+  homeDot.addEventListener("pointercancel", onDotPointerUp);
 
-  document.addEventListener(
-    "gesturestart",
-    event => {
-      event.preventDefault();
+  window.addEventListener("resize", () => {
+    if (homeDot.classList.contains("visible")) {
+      setDotPosition(dotSide, dotY, false);
     }
-  );
+  });
 
-  document.addEventListener(
-    "gesturechange",
-    event => {
-      event.preventDefault();
-    }
-  );
+  document.addEventListener("touchmove", lockPageMotion, { passive: false });
 
-  document.addEventListener(
-    "gestureend",
-    event => {
-      event.preventDefault();
-    }
-  );
+  document.addEventListener("gesturestart", event => event.preventDefault());
+  document.addEventListener("gesturechange", event => event.preventDefault());
+  document.addEventListener("gestureend", event => event.preventDefault());
 
   updateRunButtonState();
-
 </script>
 
 </body>
